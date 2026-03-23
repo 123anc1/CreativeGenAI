@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cyf.chatclient.modules.session.mapper.SessionMapper">
+
+    <select id="list" resultType="cn.cyf.chatclient.modules.session.model.SessionVo">
+            select * from chat_session where user_id=#{userid}
+    </select>
+
+    <insert id="create" parameterType="cn.cyf.chatclient.modules.session.model.SessionVo">
+        insert into chat_session(user_id, session_id, title, created_at ,updated_at)
+        values
+        (#{userid},#{sessionid},#{title},#{createdat},#{updatedat})
+    </insert>
+
+</mapper>

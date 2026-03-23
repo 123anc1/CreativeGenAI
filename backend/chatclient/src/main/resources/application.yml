@@ -1,0 +1,93 @@
+spring:
+  #向量数据库自定义配置
+  autoconfigure:
+    exclude:
+      org.springframework.ai.vectorstore.redis.autoconfigure.RedisVectorStoreAutoConfiguration
+  application:
+    name: chatclient
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+  #  数据库配置
+  datasource:
+    hikari:
+      maximum-pool-size: 30
+      minimum-idle: 10
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      validation-timeout: 5000
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo1.4?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&characterEncoding=utf-8&useUnicode=true
+    username: root
+    password: 123456
+
+#AI 配置
+  ai:
+    #imageModel
+    zhipuai :
+      api-key: ad197af1d00f4175ba32377f594f6905.6C32duiyW2zEX0nr
+      base-url: open.bigmodel.cn/api/paas
+
+    #model
+    deepseek:
+      api-key: sk-1f6f371f5869469ea8e8491683167b4e
+      chat:
+        options:
+#          model: deepseek-reasoner
+          model: deepseek-chat
+          temperature: 0.8
+
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        options:
+          model: embeddinggemma:latest
+
+    model:
+      embedding: ollama
+
+    chat:
+#      client:
+#        enabled: false
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always
+            platform: mysql
+
+#    vectorstore:
+#      redis:
+#        initialize-schema: true #是否初始化所需 Schema
+#        index-name: custom-index #存储向量的索引名称
+#        prefix: custom-prefix #向量存储的 Redis Key 前缀
+  data:
+    redis:
+      url: redis://localhost:6380
+  #webclient缓冲区配置
+  http:
+    codecs:
+      max-in-memory-size: 30MB
+
+#日志配置
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client.advisor : info
+    cn.cyf.chatclient: info
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: image-ai-oss
+    region: cn-beijing

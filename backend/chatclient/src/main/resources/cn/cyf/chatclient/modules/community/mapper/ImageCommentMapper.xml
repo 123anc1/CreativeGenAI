@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cyf.chatclient.modules.community.mapper.ImageCommentMapper">
+
+    <!-- 结果映射 -->
+    <resultMap id="ImageCommentResultMap" type="cn.cyf.chatclient.modules.community.model.ImageComment">
+        <id column="id" property="id"/>
+        <result column="post_id" property="postId"/>
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="content" property="content"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="reply_user_id" property="replyUserId"/>
+        <result column="reply_user_name" property="replyUserName"/>
+        <result column="like_count" property="likeCount"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <!-- 查询图片的所有一级评论（带分页） -->
+    <select id="selectByPostId" parameterType="cn.cyf.chatclient.modules.community.model.CommentParam"
+            resultMap="ImageCommentResultMap">
+        SELECT 
+            ic.id,
+            ic.post_id,
+            ic.user_id,
+            u.name as user_name,
+            ic.content,
+            ic.parent_id,
+            ic.reply_user_id,
+            ru.name as reply_user_name,
+            ic.like_count,
+            ic.status,
+            ic.created_at,
+            ic.updated_at
+        FROM image_comment ic
+        LEFT JOIN user u ON ic.user_id = u.id
+        LEFT JOIN user ru ON ic.reply_user_id = ru.id
+        WHERE ic.post_id = #{postId} 
+          AND ic.status = 0 
+          AND ic.parent_id IS NULL
+        ORDER BY ic.created_at DESC
+    </select>
+
+
+
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cyf.chatclient.modules.system.mapper.SysLogMapper">
+
+    <!-- 插入日志记录 -->
+    <insert id="insertLog" parameterType="cn.cyf.chatclient.modules.system.model.SysLog" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_log (
+            username, 
+            operation, 
+            method, 
+            params, 
+            ip, 
+            user_agent, 
+            execution_time, 
+            return_value, 
+            exception, 
+            create_time, 
+            module, 
+            uri, 
+            status_code
+        ) VALUES (
+            #{username}, 
+            #{operation}, 
+            #{method}, 
+            #{params}, 
+            #{ip}, 
+            #{userAgent}, 
+            #{executionTime}, 
+            #{returnValue}, 
+            #{exception}, 
+            #{createTime}, 
+            #{module}, 
+            #{uri}, 
+            #{statusCode}
+        )
+    </insert>
+
+    <!-- 分页查询日志列表 -->
+    <select id="selectLogs" parameterType="cn.cyf.chatclient.modules.system.model.LogQueryParam" resultType="cn.cyf.chatclient.modules.system.model.SysLog">
+        SELECT * FROM sys_log
+        <where>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="operation != null and operation != ''">
+                AND operation LIKE CONCAT('%', #{operation}, '%')
+            </if>
+            <if test="module != null and module != ''">
+                AND module = #{module}
+            </if>
+            <if test="ip != null and ip != ''">
+                AND ip = #{ip}
+            </if>
+            <if test="startTime != null">
+                AND create_time >= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND create_time &lt;= #{endTime}
+            </if>
+            <if test="statusCode != null">
+                AND status_code = #{statusCode}
+            </if>
+            <if test="method != null and method != ''">
+                AND method = #{method}
+            </if>
+            <if test="uri != null and uri != ''">
+                AND uri LIKE CONCAT('%', #{uri}, '%')
+            </if>
+        </where>
+        ORDER BY ${orderBy} ${orderDirection}
+        LIMIT #{offset}, #{pageSize}
+    </select>
+
+    <!-- 查询日志总数 -->
+    <select id="selectLogCount" parameterType="cn.cyf.chatclient.modules.system.model.LogQueryParam" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM sys_log
+        <where>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="operation != null and operation != ''">
+                AND operation LIKE CONCAT('%', #{operation}, '%')
+            </if>
+            <if test="module != null and module != ''">
+                AND module = #{module}
+            </if>
+            <if test="ip != null and ip != ''">
+                AND ip = #{ip}
+            </if>
+            <if test="startTime != null">
+                AND create_time >= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND create_time &lt;= #{endTime}
+            </if>
+            <if test="statusCode != null">
+                AND status_code = #{statusCode}
+            </if>
+            <if test="method != null and method != ''">
+                AND method = #{method}
+            </if>
+            <if test="uri != null and uri != ''">
+                AND uri LIKE CONCAT('%', #{uri}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

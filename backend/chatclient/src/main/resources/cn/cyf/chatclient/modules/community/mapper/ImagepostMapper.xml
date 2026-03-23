@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.cyf.chatclient.modules.community.mapper.ImagepostMapper">
+
+    <resultMap id="ImagePostList" type="cn.cyf.chatclient.modules.community.model.Imagepost">
+        <result property="modelName" column="base_id"/>
+        <result property="style" column="lora_id"/>
+    </resultMap>
+
+    <select id="list"
+            resultMap="ImagePostList"
+            parameterType="cn.cyf.chatclient.modules.community.model.Imagepostparam"
+    >
+        SELECT i.*, u.name ,p.negative_prompt, p.steps ,p.cfg_scale ,p.base_id,p.lora_id,p.width,p.height
+        from
+        image_post I left join user u on i.user_id = u.id
+        left join lora_load_params p  on i.image_id = p.image_id
+        where status = 1
+        <if test="keyword != null and keyword != ''">
+            and (i.title like concat('%', #{keyword}, '%') or i.caption like concat('%', #{keyword}, '%'))
+        </if>
+        order by i.updated_at desc
+    </select>
+
+    <select id="listAdmin"
+            resultMap="ImagePostList"
+            parameterType="cn.cyf.chatclient.modules.community.model.Imagepostparam"
+    >
+        SELECT i.*, u.name ,p.negative_prompt, p.steps ,p.cfg_scale ,p.base_id,p.lora_id,p.width,p.height
+        from
+        image_post I left join user u on i.user_id = u.id
+        left join lora_load_params p on i.image_id = p.image_id
+        order by i.updated_at desc
+    </select>
+
+    <select id="recommend"
+            resultMap="ImagePostList"
+            parameterType="java.lang.Integer"
+    >
+        SELECT i.*, u.name ,p.negative_prompt, p.steps ,p.cfg_scale ,p.base_id,p.lora_id,p.width,p.height
+        from
+        image_post i left join user u on i.user_id = u.id
+        left join lora_load_params p on i.image_id = p.image_id
+        where i.status = 1
+        and i.id not in (
+            select post_id from image_like where user_id = #{userId}
+            union
+            select post_id from image_collection where user_id = #{userId}
+            union
+            select post_id from image_view where user_id = #{userId}
+        )
+        order by
+        -- 基于用户历史行为的相似度评分
+        (select count(*) from image_like l
+        join image_post ip on l.post_id = ip.id
+        join lora_load_params lp on ip.image_id = lp.image_id
+        where l.user_id = #{userId} and (lp.base_id = p.base_id or lp.lora_id = p.lora_id)) * 3 +
+        (select count(*) from image_collection c
+        join image_post ip on c.post_id = ip.id
+        join lora_load_params lp on ip.image_id = lp.image_id
+        where c.user_id = #{userId} and (lp.base_id = p.base_id or lp.lora_id = p.lora_id)) * 2 +
+        (select count(*) from image_view v
+        join image_post ip on v.post_id = ip.id
+        join lora_load_params lp on ip.image_id = lp.image_id
+        where v.user_id = #{userId} and (lp.base_id = p.base_id or lp.lora_id = p.lora_id)) * 1 desc,
+        i.like_count desc, i.comment_count desc, i.view_count desc,
+        i.id desc  -- 使用 ID 倒序确保结果稳定不重复
+    </select>
+</mapper>

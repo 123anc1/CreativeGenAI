@@ -1,0 +1,58 @@
+# --- 操作系统文件 ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- 环境变量 (⚠️重要：包含密码、API Key 的文件千万别上传) ---
+.env
+.env.local
+.env.production
+*.pem
+*.key
+
+# --- Python (后端常见) ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.ipynb_checkpoints
+
+# --- Node.js (前端/后端常见) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store/
+
+# --- 前端构建产物 (通常不需要存，因为可以重新生成) ---
+dist/
+build/
+out/
+.next/ (如果是 Next.js)
+.nuxt/ (如果是 Nuxt.js)
+
+# --- IDE 配置 (可选) ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- AI 模型大文件 (⚠️重要：模型文件通常很大，建议忽略或用 Git LFS) ---
+*.pth
+*.pt
+*.h5
+*.bin
+*.onnx
+models/
+checkpoints/
+
+# --- 日志文件 ---
+*.log
+logs/
