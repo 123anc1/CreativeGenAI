@@ -117,17 +117,17 @@ File Storage (Local / OSS)
 
 ---
 
-## 图像生成模块
+## 分享社区
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/c9a8130f-a140-4b5d-b042-692286f369f5" />
 
 ---
 
-## 历史记录页面
+## 图片详情
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/f0ffa4e4-5f0b-4669-ba2c-f73ca4dba525" />
 
 ---
 
-## 系统管理页面
+## 个人中心
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/17379d30-d212-4bca-8b12-be7a512cc19b" />
 
 ---
