@@ -67,7 +67,7 @@ public class ImageModelController {
     public String generateImage(@RequestPart("file") MultipartFile file) {
         String result = imageService.caption(file);
         try {
-            ZhipuAiClient client = ZhipuAiClient.builder().ofZHIPU().apiKey("ad197af1d00f4175ba32377f594f6905.6C32duiyW2zEX0nr").build();
+            ZhipuAiClient client = ZhipuAiClient.builder().ofZHIPU().apiKey(${ZhiPu-AI}).build();
 
             CreateImageRequest request = CreateImageRequest.builder()
                     .model("glm-image")
