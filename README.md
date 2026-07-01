@@ -112,7 +112,7 @@ File Storage (Local / OSS)
 
 ---
 
-## AI生成页面
+## 画布编辑管理页面
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/9d940761-9d98-474d-9a23-c1a2bdcc39bb" />
 
 ---
