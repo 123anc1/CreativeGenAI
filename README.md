@@ -102,12 +102,12 @@ File Storage (Local / OSS)
 
 # 📸 页面预览
 
-## 首页界面
+## 多模态交互页面
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/dbfb5f33-714c-413c-9317-dc9e1be7309e" />
 
 ---
 
-## 登录 / 注册页面
+## 图像生成
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/fb2c1567-f9c8-4372-83ad-69e15b98adea" />
 
 ---
@@ -129,6 +129,9 @@ File Storage (Local / OSS)
 
 ## 系统管理页面
 <img width="900" alt="image" src="https://github.com/user-attachments/assets/17379d30-d212-4bca-8b12-be7a512cc19b" />
+
+---
+
 ## 1️⃣ 后端启动
 
 ```bash
