@@ -21,20 +21,20 @@ spring:
       validation-timeout: 5000
 
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/demo1.4?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&characterEncoding=utf-8&useUnicode=true
+    url: jdbc:mysql://localhost:3306
     username: root
-    password: 123456
+    password: ****
 
 #AI 配置
   ai:
     #imageModel
     zhipuai :
-      api-key: ad197af1d00f4175ba32377f594f6905.6C32duiyW2zEX0nr
+      api-key: ****
       base-url: open.bigmodel.cn/api/paas
 
     #model
     deepseek:
-      api-key: sk-1f6f371f5869469ea8e8491683167b4e
+      api-key: ****
       chat:
         options:
 #          model: deepseek-reasoner
