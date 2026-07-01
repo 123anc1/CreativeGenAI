@@ -100,15 +100,35 @@ File Storage (Local / OSS)
 
 ---
 
-# 页面预览
-<img width="501" height="252" alt="image" src="https://github.com/user-attachments/assets/dbfb5f33-714c-413c-9317-dc9e1be7309e" />
-<img width="415" height="172" alt="image" src="https://github.com/user-attachments/assets/fb2c1567-f9c8-4372-83ad-69e15b98adea" />
-<img width="415" height="206" alt="image" src="https://github.com/user-attachments/assets/9d940761-9d98-474d-9a23-c1a2bdcc39bb" />
-<img width="415" height="206" alt="image" src="https://github.com/user-attachments/assets/c9a8130f-a140-4b5d-b042-692286f369f5" />
-<img width="415" height="206" alt="image" src="https://github.com/user-attachments/assets/f0ffa4e4-5f0b-4669-ba2c-f73ca4dba525" />
-<img width="415" height="206" alt="image" src="https://github.com/user-attachments/assets/17379d30-d212-4bca-8b12-be7a512cc19b" />
+# 📸 页面预览
 
+## 首页界面
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/dbfb5f33-714c-413c-9317-dc9e1be7309e" />
 
+---
+
+## 登录 / 注册页面
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/fb2c1567-f9c8-4372-83ad-69e15b98adea" />
+
+---
+
+## AI生成页面
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/9d940761-9d98-474d-9a23-c1a2bdcc39bb" />
+
+---
+
+## 图像生成模块
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/c9a8130f-a140-4b5d-b042-692286f369f5" />
+
+---
+
+## 历史记录页面
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/f0ffa4e4-5f0b-4669-ba2c-f73ca4dba525" />
+
+---
+
+## 系统管理页面
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/17379d30-d212-4bca-8b12-be7a512cc19b" />
 ## 1️⃣ 后端启动
 
 ```bash
