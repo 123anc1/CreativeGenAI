@@ -101,6 +101,8 @@ File Storage (Local / OSS)
 ---
 
 # ⚙️ 快速开始
+<img width="501" height="252" alt="image" src="https://github.com/user-attachments/assets/dbfb5f33-714c-413c-9317-dc9e1be7309e" />
+
 
 ## 1️⃣ 后端启动
 
